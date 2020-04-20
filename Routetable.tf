@@ -11,6 +11,7 @@ resource "aws_route_table" "dev-routetable" {
     }
 }
 resource "aws_route_table_association" "dev-public-subnet"{
-    subnet_id = "aws_subnet.prod-subnet-public-1.id"
+    subnet_id = "aws_subnet.dev-subnet-public-1.id"
     route_table_id = "aws_route_table.dev-routetable.id"
 }
+
