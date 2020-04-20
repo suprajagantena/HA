@@ -1,8 +1,7 @@
 resource "aws_instance" "web1" {
     ami = "${lookup(var.AMI, var.AWS_REGION)}"
     instance_type = "t2.micro"
-    subnet_id = "aws_subnet.dev-subnet-public-1.id}"
-    # Security Group
+    subnet_id = "aws_subnet.pri.id"
     vpc_security_group_ids = ["${aws_security_group.ssh-allowed.id}"]
     # the Public SSH key
     key_name = "${aws_key_pair.london-region-key-pair.id}"
