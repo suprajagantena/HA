@@ -10,3 +10,7 @@ resource "aws_route_table" "dev-routetable" {
         Name = "dev-routetable"
     }
 }
+resource "aws_route_table_association" "dev-public-subnet"{
+    subnet_id = "aws_subnet.prod-subnet-public-1.id"
+    route_table_id = "aws_route_table.dev-routetable.id"
+}
