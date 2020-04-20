@@ -3,7 +3,7 @@ resource "aws_route_table" "dev-routetable" {
     
     route {
         cidr_block = "10.192.1.0/24" 
-        gateway_id = "aws_internet_gateway.dev-igw.id}" 
+        gateway_id = "aws_internet_gateway.dev-igw.id" 
     }
     
     tags = {
