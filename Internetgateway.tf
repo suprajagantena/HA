@@ -1,6 +1,6 @@
-resource "aws_internet_gateway" "prod-igw" {
-    vpc_id = "${aws_vpc.prod-vpc.id}"
+resource "aws_internet_gateway" "dev-igw" {
+    vpc_id = aws_vpc.dev.id
     tags {
-        Name = "prod-igw"
+        Name = "dev-igw"
     }
 }
