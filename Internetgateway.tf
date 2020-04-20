@@ -3,5 +3,5 @@ resource "aws_internet_gateway" "dev-igw" {
     tags = {
         Name = "dev-igw"
     }
-}
+}   
 
