@@ -3,7 +3,7 @@ resource "aws_lb" "lb" {
   internal           = false
   load_balancer_type = "application"
   #security_groups   ="${data.aws_security_group.ssh.id}"
-  vpc_security_group_ids = aws_security_group.ssh.id
+  vpc_security_group_id = aws_security_group.ssh.id
   subnets            = ["aws_subnet.pub.id", "aws_subnet.pri.id"]
 
   enable_deletion_protection = true
