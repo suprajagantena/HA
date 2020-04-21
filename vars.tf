@@ -1,4 +1,4 @@
-variable "aws_subnet" {
+variable "aws_securitygroup" {
   type    = string
-  default = 
+  default = aws_security_group.ssh.id
 }
