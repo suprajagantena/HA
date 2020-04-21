@@ -1,4 +1,4 @@
-resource "aws_security_group" "ssh" {
+resource "aws_security_group" "new" {
     vpc_id = aws_vpc.dev.id
     
     egress {
@@ -20,6 +20,6 @@ resource "aws_security_group" "ssh" {
         cidr_blocks = ["0.0.0.0/0"]
     }
     tags = {
-        Name = "ssh"
+        Name = "new"
     }
 }
