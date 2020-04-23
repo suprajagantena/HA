@@ -1,5 +1,5 @@
 resource "aws_security_group" "new" {
-    vpc_id = ["aws_vpc.dev.id"]
+    vpc_id = aws_vpc.dev.id
     
     egress {
         from_port = 0
