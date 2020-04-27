@@ -8,7 +8,7 @@ resource "aws_lb" "lb" {
   enable_deletion_protection = true
 
   access_logs {
-    bucket  = "aws_s3_bucket.lb_logs.bucket"
+    bucket  = "aws_s3_bucket56743289123.lb_logs.bucket"
     prefix  = "test-lb"
     enabled = true
   }
