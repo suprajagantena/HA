@@ -1,6 +1,6 @@
-resource "aws_launch_configuration" "as_conf" {
-  name_prefix   = "terraform-lc-example-"
-  image_id      = "ami-0323c3dd2da7fb37d" #"data.aws_ami.Linux.id"
+resource "aws_launch_configuration" "mylc {
+  name_prefix   = "terraform-lc"
+  image_id      =  "${data.aws_ami.ubuntu.id}"    #"ami-0323c3dd2da7fb37d" 
   instance_type = "t2.micro"
 
   lifecycle {
@@ -8,8 +8,8 @@ resource "aws_launch_configuration" "as_conf" {
   }
 }
 
-resource "aws_autoscaling_group" "bar" {
-  name                 = "terraform-asg-example"
+resource "aws_autoscaling_group" "myasg" {
+  name                 = "terraform-myasg"
   launch_configuration = "aws_launch_configuration.as_conf.name"
   min_size             = 2
   max_size             = 2
