@@ -1,6 +1,6 @@
 resource "aws_launch_configuration" "mylc" {
   name_prefix   = "terraform-lc"
-  image_id      =  "data.aws_ami.linux.id"   
+  image_id      =  "ami-0323c3dd2da7fb37d"  
   instance_type = "t2.micro"
 
   lifecycle {
