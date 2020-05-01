@@ -11,14 +11,9 @@ resource "aws_launch_configuration" "mylc" {
 
 resource "aws_autoscaling_group" "myasg" {
   name                 = "terraform-myasg"
-  launch_configuration = "aws_launch_configuration.mylc"
+  launch_configuration = "aws_launch_configuration.mylc.id"
   min_size             = 2
   max_size             = 2
-  
-  launch_template {
-    id      = "${aws_launch_configuration.mylc.id}"
-    version = "$Latest"
-  }
 
   lifecycle {
     create_before_destroy = true
