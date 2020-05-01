@@ -1,4 +1,3 @@
-terraform import aws_autoscaling_group.mylc myasg
 resource "aws_launch_configuration" "mylc" {
   name_prefix   = "mylc"
   image_id      =  "ami-0323c3dd2da7fb37d"  
