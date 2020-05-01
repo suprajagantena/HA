@@ -12,7 +12,7 @@ resource "aws_launch_configuration" "mylc" {
 resource "aws_autoscaling_group" "myasg" {
   name                 = "terraform-myasg"
   launch_configuration = "${aws_launch_configuration.mylc.name}"
-  vpc_zone_identifier  = "${aws_subnet.pri.id}"
+  vpc_zone_identifier  = ["${aws_subnet.pri.id}"]
   min_size             = 2
   max_size             = 2
 
