@@ -1,1 +1,56 @@
-
+AWSTemplateFormatVersion: 2010-09-09
+Description: VPC endpoint for S3
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+    - Label:
+        default: 
+      Parameters:
+        - SourceVPCID
+        - Environment
+    - Label:
+        default: Destination VPC Details
+      Parameters:
+        - DestinationVPCRegion
+        - DestinationVPCID
+        - DestinationaccountID
+        - Peerrole    
+Parameters:
+  VpcId:
+    Description: The VPCID which will be attached to endpoint
+    Type: AWS::EC2::VPC::Id
+  RouteTableId:
+    Description: The Routing Table that this endpoint will be added to
+    Type: String
+  
+  Resources:
+  S3Endpoint: 
+    Type: "AWS::EC2::VPCEndpoint"
+    Properties: 
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement:
+            - Effect: Allow
+              Principal: '*'
+              Action:
+                - 's3:GetObject'
+                - 's3:PutObject'
+                - 's3:DeleteObject'
+              Resource:
+                - 'arn:aws:s3:::aws-allow-ec2-vpc-endpoint/*'
+      RouteTableIds: 
+        - !Ref RouteTableId
+      ServiceName: !Join
+        - ''
+        - - com.amazonaws.
+          - !Ref 'AWS::Region'
+          - .s3
+      VpcId: !Ref VpcId
+      
+      Outputs:
+  StackName:
+    Description: 'Stack name'
+    Value: !Sub '${AWS::StackName}'
+  Endpoint:
+    Description: 'The VPC endpoint to S3.'
+    Value: !Ref S3Endpoint
