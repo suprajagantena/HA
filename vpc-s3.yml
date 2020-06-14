@@ -4,17 +4,17 @@ Metadata:
   AWS::CloudFormation::Interface:
     ParameterGroups:
     - Label:
+        default: Create Endpoint
+      Parameters:
+        - Vpc Id
+        - Route Table Id
+    - Label:
         default: 
       Parameters:
-        - SourceVPCID
-        - Environment
-    - Label:
-        default: Destination VPC Details
-      Parameters:
-        - DestinationVPCRegion
-        - DestinationVPCID
-        - DestinationaccountID
-        - Peerrole    
+        - 
+        -
+        - 
+        -     
 Parameters:
   VpcId:
     Description: The VPCID which will be attached to endpoint
