@@ -6,4 +6,25 @@ Metadata:
     - Label:
         default: Create Client VPN Endpoint
         Parameters: 
-          -Name Tag
+          - Name Tag
+          - Description
+          - Client IPv4 CIDR
+    - Label:
+        default: Authentication Information
+        Parameters:  
+          - Server certificate ARN
+          - Authentication Options
+    - Label:
+        default: Connection Logging
+        Parameters:
+          - Do you want to log the details on client connections
+    - Label:
+        default: Other Optional Parameters
+        Parameters:
+          - DNS Server 1 IP address
+          - DNS Server 2 IP address
+          - Transport Protocol
+          - Enable split-tunnel
+          - VPC ID
+          - VPN port
+    
