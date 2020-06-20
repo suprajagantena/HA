@@ -1,0 +1,9 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This template creates client VPN Endpoint for VPC.
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+    - Label:
+        default: Create Client VPN Endpoint
+        Parameters: 
+          -Name Tag
