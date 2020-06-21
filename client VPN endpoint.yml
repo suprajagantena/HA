@@ -27,4 +27,44 @@ Metadata:
           - Enable split-tunnel
           - VPC ID
           - VPN port
-    
+Parameters:
+  Name Tag:
+    Description: Name Tag for Client VPN endpoint
+    Type: String
+  Description:
+    Description: A brief description of the Client VPN endpoint 
+    Type: String
+   Client IPv4 CIDR:
+     Description: The IP address range, in CIDR notation, from which client IP addresses are allocated
+     Type: String
+   Server certificate ARN:
+     Description: The ARN of the server certificate. The server certificate must be provisioned in AWS Certificate Manager (ACM)
+     Type: String
+   Authentication Options:
+     Description: These methods are how end users are authenticated
+     Type: String
+   Do you want to log the details on client connections:
+     Description: The name of the CloudWatch Logs log group to use
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+   DNS Server 1 IP address:
+     Description: 
+     Type: String
+      
