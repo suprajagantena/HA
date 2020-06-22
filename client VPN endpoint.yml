@@ -34,37 +34,60 @@ Parameters:
   Description:
     Description: A brief description of the Client VPN endpoint 
     Type: String
-   Client IPv4 CIDR:
+  Client IPv4 CIDR:
      Description: The IP address range, in CIDR notation, from which client IP addresses are allocated
      Type: String
-   Server certificate ARN:
+  Server certificate ARN:
      Description: The ARN of the server certificate. The server certificate must be provisioned in AWS Certificate Manager (ACM)
      Type: String
-   Authentication Options:
+  Authentication Options:
      Description: These methods are how end users are authenticated
      Type: String
-   Do you want to log the details on client connections:
+  Do you want to log the details on client connections:
      Description: The name of the CloudWatch Logs log group to use
      Type: String
-   DNS Server 1 IP address:
-     Description: 
+     AllowedValues:
+       -Yes
+       -No
+  DNS Server 1 IP address: (optional)
+     Description: The IP address of the DNS server 1 to use.
      Type: String
-   DNS Server 1 IP address:
-     Description: 
+  DNS Server 2 IP address: (optional)
+     Description: The IP address of the DNS server 2 to use.
      Type: String
-   DNS Server 1 IP address:
-     Description: 
+  Transport protocol used by the TLS sessions: (optional)
+    Description: Transport protocol sessions TCP/UDP
+    Type: String
+    AllowedValues:
+      -TCP
+      -UDP
+  Enable split-tunnel: (optional)
+    Description: Enable split-tunnel to limit the traffic that is sent via the VPN tunnel
      Type: String
-   DNS Server 1 IP address:
-     Description: 
+   VPC ID: (optional)
+     Description: VPC that the endpoint will be associated with. An endpoint can only be associated with one VPC 
      Type: String
-   DNS Server 1 IP address:
-     Description: 
+   VPN Port: (optional)
+     Description: VPN port that the endpoint will use
      Type: String
-   DNS Server 1 IP address:
-     Description: 
-     Type: String
-   DNS Server 1 IP address:
-     Description: 
-     Type: String
-      
+Resource: 
+  Type: AWS::EC2::ClientVpnEndpoint
+    Properties: 
+    AuthenticationOptions: 
+    - ClientAuthenticationRequest
+    ClientCidrBlock: String
+    ConnectionLogOptions: 
+      ConnectionLogOptions
+    Description: String
+    DnsServers: 
+      - String
+    SecurityGroupIds: 
+      - String
+    ServerCertificateArn: String
+    SplitTunnel: Boolean
+    TagSpecifications: 
+      - TagSpecification
+    TransportProtocol: String
+    VpcId: String
+    VpnPort: Integer
+
