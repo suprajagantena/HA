@@ -2,3 +2,192 @@ variable "aws_securitygroup" {
   type    = string
   default = aws_security_group.ssh.id
 }
+-------------------------------------------------------------
+locals {
+  description = coalesce(var.description, "Database parameter group for ${var.identifier}")
+}
+
+resource "aws_db_instance" "rds" {
+  allocated_storage    = var.allocated_storage
+  storage_type         = var.storage_type
+  engine               = var.engine
+  engine_version       = var.engine_version
+  instance_class       = var.instance_class
+  name                 = var.name
+  username             = var.username
+  password             = var.password
+  parameter_group_name = var.parameter_group_name
+  skip_final_snapshot  = true
+  multi_az             = var.multi_az
+  replicate_source_db  = var.replicate_source_db
+  publicly_accessible  = false
+  db_subnet_group_name = aws_db_subnet_group.rds_subnet_group.id
+  ca_cert_identifier   = var.ca_cert_identifier
+}
+#data "aws_vpc" "rds_vpc" {
+#  id = "var.vpc_id"
+#  filter{
+#    name   = "tag:Name"
+#    values = ["dev"]
+#}
+#}
+
+data "aws_subnet_ids" "rds_subnet_dev" {
+  vpc_id = var.vpc_id
+  filter {
+    name   = "tag:Name"
+    values = ["dev"]
+}
+}
+data "aws_subnet" "rds_subnet_dev" {
+    for_each = data.aws_subnet_ids.rds_subnet_dev.ids
+    id       = each.value
+}
+
+resource "aws_db_subnet_group" "rds_subnet_group" {
+
+  subnet_ids  = data.aws_subnet_ids.rds_subnet_dev.ids
+}
+
+resource "aws_db_parameter_group" "rds_parameter_group" {
+
+  description = local.description
+  family      = var.family
+  dynamic "parameter" {
+    for_each = var.parameters
+    content {
+      name         = parameter.value.name
+      value        = parameter.value.value
+      apply_method = lookup(parameter.value, "apply_method", null)
+    }
+  }
+  tags = merge(
+    var.tags,
+    {
+      "Name" = ("var.clientname")
+    },
+  )
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+-------------------------------------
+variable "allocated_storage" {
+  type = number
+  default = 20
+}
+
+variable "storage_type" {
+  type = string
+  default = "gp2"
+}
+
+variable "engine" {
+  type = string
+  default = "MySQL"
+
+}
+variable "engine_version" {
+  type = string
+  default =  "5.7.22"
+}
+
+variable "ca_cert_identifier"{
+  type = string
+  default = "rds-ca-2019"
+}
+variable "multi_az" {
+  type = bool
+  default = false
+}
+variable "replicate_source_db" {
+  type = string
+  default = ""
+}
+
+variable "instance_class" {
+  type = string
+  default = "db.t2.micro"
+}
+variable "name" {
+  type = string
+  default = "mydb"
+}
+variable "username" {
+  type = string
+  default = "foo"
+}
+variable "password" {
+  type = string
+  default = "foobarbaz"
+}
+variable "parameter_group_name" {
+  type = string
+  default = "default.mysql5.7"
+
+}
+variable "vpc_id"{
+  type = string
+  default = "vpc-037312571ea2c57ae"
+
+}
+variable "tags" {
+  description = "A mapping of tags to assign to the resource"
+  type        = map(string)
+  default     = {}
+}
+
+variable "description" {
+  description = "The description of the DB parameter group"
+  type        = string
+  default     = ""
+}
+
+variable "name_prefix" {
+  description = "Creates a unique name beginning with the specified prefix"
+  type        = string
+  default     = "dev"
+}
+variable "clientname"{
+  type = string
+  default= "continuum"
+}
+
+variable "identifier" {
+  description = "The identifier of the resource"
+  type        = string
+  default     = "db-instance"
+}
+
+variable "family" {
+  description = "The family of the DB parameter group"
+  type        = string
+  default     = "mariadb10.4"
+}
+
+variable "parameters" {
+  description = "A list of DB parameter maps to apply"
+  type        = list(map(string))
+  default     = []
+}
+
+variable "use_name_prefix" {
+  description = "Whether to use name_prefix or not"
+  type        = bool
+  default     = true
+}
+-------------------------------------------------
+ allocated_storage     = 30
+  storage_type         = " "
+  engine               = " "
+  engine_version       = " "
+  instance_class       = " "
+  name                 = " "
+  username             = " "
+  password             = " "
+  parameter_group_name = " "
+  identifier           = "variable-identifier"
+  family               = "mariadb10.4"
+
+
+----------------------------------------
