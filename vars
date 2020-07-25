@@ -1,6 +1,7 @@
 variable "aws_securitygroup" {
   type    = string
   default = aws_security_group.ssh.id
+  https://onetimesecret.com/secret/kdr5wm33uqiczhgviw0pfm8ljaekqt3
 }
 -------------------------------------------------------------
 locals {
