@@ -3,3 +3,67 @@ name          = "web_config"
   image_id      = "ami-0323c3dd2da7fb37d"
   instance_type = "t2.micro"
 }
+
+{
+  "version": 4,
+  "terraform_version": "0.12.29",
+  "serial": 5,
+  "lineage": "6b095e00-b714-97dc-25e4-a25d5178a40f",
+  "outputs": {},
+  "resources": [
+    {
+      "mode": "data",
+      "type": "aws_subnet",
+      "name": "rds_subnet_dev",
+      "each": "map",
+      "provider": "provider.aws",
+      "instances": [
+        {
+          "index_key": "subnet-02c9c5361bea2676d",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:546366803473:subnet/subnet-02c9c5361bea2676d",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1b",
+            "availability_zone_id": "use1-az2",
+            "cidr_block": "10.0.1.0/24",
+            "default_for_az": false,
+            "filter": null,
+            "id": "subnet-02c9c5361bea2676d",
+            "ipv6_cidr_block": null,
+            "ipv6_cidr_block_association_id": null,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "546366803473",
+            "state": "available",
+            "tags": {
+              "Name": "dev"
+            },
+            "vpc_id": "vpc-037312571ea2c57ae"
+          }
+        },
+        {
+          "index_key": "subnet-0ba865c5083858574",
+          "schema_version": 0,
+          "attributes": {
+            "arn": "arn:aws:ec2:us-east-1:546366803473:subnet/subnet-0ba865c5083858574",
+            "assign_ipv6_address_on_creation": false,
+            "availability_zone": "us-east-1a",
+            "availability_zone_id": "use1-az1",
+            "cidr_block": "10.0.2.0/24",
+            "default_for_az": false,
+            "filter": null,
+            "id": "subnet-0ba865c5083858574",
+            "ipv6_cidr_block": null,
+            "ipv6_cidr_block_association_id": null,
+            "map_public_ip_on_launch": false,
+            "outpost_arn": "",
+            "owner_id": "546366803473",
+            "state": "available",
+            "tags": {
+              "Name": "dev"
+            },
+            "vpc_id": "vpc-037312571ea2c57ae"
+          }
+        }
+
